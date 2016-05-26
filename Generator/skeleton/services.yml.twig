@@ -1,0 +1,72 @@
+parameters:
+{% block parameters %}
+{% if types.exception %}
+    trazas.ExceptionListener.class: {{ namespace }}\EventListener\ExceptionListener
+{% endif %}
+{% if types.data %}
+    trazas.DatoListener.class : {{ namespace }}\EventListener\DatoListener
+{% endif %}
+{% if types.action %}
+    trazas.AccionListener.class :  {{ namespace }}\EventListener\AccionListener
+{% endif %}
+{% if types.performance %}
+{% if not types.action %}
+    trazas.AccionListener.class :  {{ namespace }}\EventListener\AccionListener
+{% endif %}
+{% endif %}
+{% endblock parameters %}
+
+services:
+    request:
+        scope: request
+        synthetic: true
+        synchronized: true
+
+{% block services %}
+{% if types.exception %}
+    #servicio para trazas de excepcion
+    exception_listener:
+        class: %trazas.ExceptionListener.class%
+        arguments: [@security.token_storage,@{{ doctrine_manager }}]
+        tags:
+        - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+{% endif %}
+{% if types.data %}
+    on_flush_listener:
+        class: %trazas.DatoListener.class%
+        arguments: [@service_container,{{ doctrine_manager }}]
+        calls:
+            - [ setRequest, ['@?request='] ]
+        tags:
+        - { name: doctrine.event_listener , event: onFlush }
+{% endif %}
+{% if types.action and not types.performance %}
+    #servicio para trazas de accion
+    accion_listener:
+        class: %trazas.AccionListener.class%
+        arguments: [@security.token_storage,@{{ doctrine_manager }}, false]
+        tags:
+        - {name: kernel.event_listener , event: kernel.response, method: onKernelResponse }
+
+    rendimiento_listener:
+        class: %trazas.AccionListener.class%
+        arguments: [@security.token_storage,@{{ doctrine_manager }},false]
+        tags:
+        - {name: kernel.event_listener , event: kernel.terminate, method: onKernelTerminate }
+{% endif %}
+{% if types.action and types.performance %}
+    #servicio para trazas de accion
+    accion_listener:
+        class: %trazas.AccionListener.class%
+        arguments: [@security.token_storage,@{{ doctrine_manager }}, true]
+        tags:
+        - {name: kernel.event_listener , event: kernel.response, method: onKernelResponse }
+
+    rendimiento_listener:
+        class: %trazas.AccionListener.class%
+        arguments: [@security.token_storage,@{{ doctrine_manager }}, true]
+        tags:
+        - {name: kernel.event_listener , event: kernel.terminate, method: onKernelTerminate }
+{% endif %}
+{% endblock services %}

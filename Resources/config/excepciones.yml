@@ -1,0 +1,32 @@
+#/*******************************************************************************************************#
+#Las excepciones se configuran especificando los parámentros mostrados en la excepción de ejemplo "E1"
+#Si desea incluir internacionalización a los atributos de la excepción debe sustituir los valores de los
+#parametros "mensaje" y "descripcion" por el codigo del mensaje especificado en los archivos
+#translatesexcepciones.* de la carpeta config/traslations, ejemplo:
+#        E1:
+#            mensaje: trazas.excepciones.E1.mensaje
+#            descripcion: trazas.excepciones.E1.descripcion
+#/*******************************************************************************************************#
+
+excepciones:
+     E1:
+        mensaje: excepciones.E1.mensaje
+        descripcion: trazas.excepciones.E1.descripcion
+     ERegistrarTipoDato:
+        mensaje: excepciones.ERegistrarTipoDato.mensaje
+        descripcion: excepciones.ERegistrarTipoDato.descripcion
+     ERegistrarTipoAccion:
+        mensaje: excepciones.ERegistrarTipoAccion.mensaje
+        descripcion: excepciones.ERegistrarTipoAccion.descripcion
+     ERegistrarTipoExcepcion:
+        mensaje: excepciones.ERegistrarTipoExcepcion.mensaje
+        descripcion: excepciones.ERegistrarTipoExcepcion.descripcion
+     ERegistrarTipoRendimiento:
+        mensaje: excepciones.ERegistrarTipoRendimiento.mensaje
+        descripcion: excepciones.ERegistrarTipoRendimiento.descripcion
+     ENotRequestObject:
+        mensaje: excepciones.ENotRequestObject.mensaje
+        descripcion: excepciones.ENotRequestObject.descripcion
+     ENotConexion:
+        mensaje: excepciones.ENotConexion.mensaje
+        descripcion: excepciones.ENotConexion.descripcion

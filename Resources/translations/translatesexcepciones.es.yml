@@ -1,0 +1,28 @@
+excepciones:
+    E1:
+        mensaje: Hola este es menaje de la excepcion  E1 de ejemplo con traslations
+        descripcion: Hola esto es una descripción de la excepcion E1 de ejemplo con traslations
+
+    ERegistrarTipoDato:
+        mensaje: Debe registrar el tipo 'Datos' en la tabla nomTipoTraza.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ERegistrarTipoAccion:
+        mensaje: Debe registrar el tipo 'Accion' en la tabla nomTipoTraza.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ERegistrarTipoExcepcion:
+        mensaje: Debe registrar el tipo 'Excepcion' en la tabla nomTipoTraza.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ERegistrarTipoRendimiento:
+        mensaje: Debe registrar el tipo 'Rendimiento' en la tabla nomTipoTraza.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ENotRequestObject:
+        mensaje: El objeto Request no esta definido, no se puede determinar el Ip del cliente.
+        descripcion: El objeto Request no esta definido, no se puede determinar el Ip del cliente.Ver excepción real con el métpdo getInterna().
+
+    ENotConexion:
+        mensaje: Existen problemas con la base de datos, revise el estado de las tablas de trazas y la conexion.
+        descripcion: Ha ocurrido una excepcion de tipo DBalException, relacionado con la conexion a la base de datos o  problemas con las tablas de trazas, ver excepción interna.

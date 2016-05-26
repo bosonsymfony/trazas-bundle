@@ -1,0 +1,20 @@
+excepciones:
+    E1:
+        mensaje: 'Unable to generate the service file as the target directory "%s" exists but is a file.'
+        descripcion: Hello this the description of example exception E1 with traslations service.
+
+    ERegistrarTipoDato:
+        mensaje: You need to register an 'Datos' entry in nomTipotraza table.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ERegistrarTipoAccion:
+        mensaje: You need to register an 'Accion' entry in nomTipotraza table.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ERegistrarTipoExcepcion:
+        mensaje: You need to register an 'Excepcion' entry in nomTipotraza table.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.
+
+    ERegistrarTipoRendimiento:
+        mensaje: You need to register an 'Rendimiento' entry in nomTipotraza table.
+        descripcion: La tabla nomTipoTraza no tiene registrada una tupla con este valor.

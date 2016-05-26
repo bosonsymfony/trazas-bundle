@@ -1,0 +1,24 @@
+config_route: trazas_app_config
+menu:
+    trazas:
+        title: Trazas
+        type: toggle
+        icon: 'mdi mdi-view-quilt'
+        includes: trazas
+        children:
+            home:
+                title: 'Activar Trazas'
+                type: link
+                state: trazas.activarT
+            hisaccion:
+                title: 'Trazas de Acción'
+                type: link
+                state: trazas.hisaccion
+            hisdato:
+                title: 'Trazas de Datos'
+                type: link
+                state: trazas.hisdato
+            hisexcepcion:
+                title: 'Trazas de Excepción'
+                type: link
+                state: trazas.hisexcepcion

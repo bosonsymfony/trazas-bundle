@@ -1,0 +1,80 @@
+<md-dialog>
+    <md-toolbar class="md-panel-toolbar">
+        <div class="md-toolbar-tools">
+            <h3>
+                Adicionar hisExcepcion
+            </h3>
+            <span flex=""></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="mdi mdi-close i-24"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-dialog-content">
+        <form name="form"
+          method="post" action="">    <div ng-messages="errors.trazasbundle_hisexcepcion">
+        <div ng-repeat="message in errors.trazasbundle_hisexcepcion" ng-bind="message"></div>
+    </div>                    <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Id traza</label>
+                <input type="number" name="trazasbundle_hisexcepcion[idTraza]" ng-model="entity['trazasbundle_hisexcepcion[idTraza]']" required="required" />
+            <div ng-messages="errors.idTraza">
+        <div ng-repeat="message in errors.idTraza" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Fecha</label>
+                <input type="text" name="trazasbundle_hisexcepcion[fecha]" ng-model="entity['trazasbundle_hisexcepcion[fecha]']" required="required" maxlength="100" />
+            <div ng-messages="errors.fecha">
+        <div ng-repeat="message in errors.fecha" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Hora</label>
+                <input type="text" name="trazasbundle_hisexcepcion[hora]" ng-model="entity['trazasbundle_hisexcepcion[hora]']" required="required" maxlength="100" />
+            <div ng-messages="errors.hora">
+        <div ng-repeat="message in errors.hora" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Usuario</label>
+                <input type="text" name="trazasbundle_hisexcepcion[usuario]" ng-model="entity['trazasbundle_hisexcepcion[usuario]']" required="required" maxlength="255" />
+            <div ng-messages="errors.usuario">
+        <div ng-repeat="message in errors.usuario" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Ip host</label>
+                <input type="text" name="trazasbundle_hisexcepcion[ipHost]" ng-model="entity['trazasbundle_hisexcepcion[ipHost]']" required="required" maxlength="255" />
+            <div ng-messages="errors.ipHost">
+        <div ng-repeat="message in errors.ipHost" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Rol</label>
+                <input type="text" name="trazasbundle_hisexcepcion[rol]" ng-model="entity['trazasbundle_hisexcepcion[rol]']" required="required" maxlength="255" />
+            <div ng-messages="errors.rol">
+        <div ng-repeat="message in errors.rol" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Tipo</label>
+                <input type="text" name="trazasbundle_hisexcepcion[tipo]" ng-model="entity['trazasbundle_hisexcepcion[tipo]']" required="required" maxlength="255" />
+            <div ng-messages="errors.tipo">
+        <div ng-repeat="message in errors.tipo" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Mensaje</label>
+                <input type="text" name="trazasbundle_hisexcepcion[mensaje]" ng-model="entity['trazasbundle_hisexcepcion[mensaje]']" required="required" maxlength="1000" />
+            <div ng-messages="errors.mensaje">
+        <div ng-repeat="message in errors.mensaje" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+            </form>
+    </md-dialog-content>
+    <div class="md-actions">
+        <md-button class="md-primary md-raised" ng-disabled="!form.$valid" ng-click="accept()">Aceptar</md-button>
+        <md-button class="md-raised" ng-disabled="!form.$valid" ng-click="apply()">Aplicar</md-button>
+        <md-button class="md-primary" ng-click="cancel()">Cancelar</md-button>
+    </div>
+</md-dialog>

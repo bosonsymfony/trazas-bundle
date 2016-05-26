@@ -1,0 +1,129 @@
+/**
+ * Created by killer on 19/01/16.
+ */
+
+angular.module('app')
+        .run(
+                ['$rootScope',
+                    function ($rootScope) {
+
+                    }
+                ]
+        )
+        .config(
+                ['$stateProvider',
+                    function ($stateProvider) {
+
+                        //routes here
+                        $stateProvider
+                                .state('trazas', {
+                                    abstract: true,
+                                    url: '/trazas',
+                                    views: {
+                                        '': {
+                                            templateUrl: '{{ path('backend_layout')|raw }}'
+                                        },
+                                        'aside': {
+                                            templateUrl: '{{ path('backend_aside')|raw }}'
+                                        },
+                                        'content': {
+                                            templateUrl: '{{ path('backend_content')|raw }}'
+                                        }
+                                    }
+                                })
+                                .state('trazas.hisexcepcion', {
+                                    url: '/hisexcepcion',
+                                    templateUrl: '{{ asset('bundles/trazas/adminApp/views/hisExcepcion/list.html')|raw }}',
+                                    controller: 'hisExcepcionCtrl',
+                                    data: {
+                                        title: 'Trazas de Excepción'
+                                    },
+                                    resolve: load(
+                                            [
+                                                {
+                                                    files: [
+                                                        '{{ asset('bundles/trazas/adminApp/controllers/hisExcepcion/hisExcepcionCtrl.js')|raw }}',
+                                                        '{{ asset('bundles/trazas/adminApp/services/hisExcepcion/hisExcepcionSvc.js')|raw }}'
+                                                    ]
+                                                }
+                                            ]
+                                    )
+                                })
+                                .state('trazas.hisdato', {
+                                    url: '/hisdato',
+                                    templateUrl: '{{ asset('bundles/trazas/adminApp/views/hisDato/list.html')|raw }}',
+                                    controller: 'hisDatoCtrl',
+                                    data: {
+                                        title: 'Trazas de Datos'
+                                    },
+                                    resolve: load(
+                                            [
+                                                {
+                                                    files: [
+                                                        '{{ asset('bundles/trazas/adminApp/controllers/hisDato/hisDatoCtrl.js')|raw }}',
+                                                        '{{ asset('bundles/trazas/adminApp/services/hisDato/hisDatoSvc.js')|raw }}'
+                                                    ]
+                                                }
+                                            ]
+                                    )
+                                })
+                                .state('trazas.hisaccion', {
+                                    url: '/hisaccion',
+                                    templateUrl: '{{ asset('bundles/trazas/adminApp/views/hisAccion/list.html')|raw }}',
+                                    controller: 'hisAccionCtrl',
+                                    data: {
+                                        title: 'Trazas de Acción'
+                                    },
+                                    resolve: load(
+                                            [
+                                                {
+                                                    files: [
+                                                        '{{ asset('bundles/trazas/adminApp/controllers/hisAccion/hisAccionCtrl.js')|raw }}',
+                                                        '{{ asset('bundles/trazas/adminApp/services/hisAccion/hisAccionSvc.js')|raw }}'
+                                                    ]
+                                                }
+                                            ]
+                                    )
+                                })
+                                .state('trazas.activarT', {
+                                    url: '/activartrazas',
+                                    templateUrl: '{{ asset('bundles/trazas/adminApp/views/home.html')|raw }}',
+                                    controller: 'trazasHomeCtrl',
+                                    data: {
+                                        title: 'Activar Trazas'
+                                    },
+                                    resolve: load(
+                                            [
+                                                {
+                                                    name: 'hljs',
+                                                    files: [
+                                                        '{{ asset('bundles/backend/lib/highlight/highlight.pack.js')|raw }}',
+                                                        '{{ asset('bundles/backend/lib/highlight/styles/androidstudio.css')|raw }}',
+                                                        '{{ asset('bundles/backend/node_modules/angular-highlightjs/build/angular-highlightjs.js')|raw }}'
+                                                    ]
+                                                },
+                                                {
+                                                    files: [
+                                                        '{{ asset('bundles/trazas/adminApp/services/trazasHomeSvc.js')|raw }}',
+                                                        '{{ asset('bundles/trazas/adminApp/filters/trazasHomeFilter.js')|raw }}',
+                                                        '{{ asset('bundles/trazas/adminApp/directives/trazasHomeDirective.js')|raw }}',
+                                                        '{{ asset('bundles/trazas/adminApp/controllers/trazasHomeCtrl.js')|raw }}'
+                                                    ]
+                                                }
+                                            ]
+                                    )
+                                });
+
+
+                        function load(src) {
+                            return {
+                                deps: ['$ocLazyLoad',
+                                    function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load(src);
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+        );

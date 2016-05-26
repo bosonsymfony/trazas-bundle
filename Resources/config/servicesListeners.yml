@@ -1,0 +1,37 @@
+parameters:
+    trazas.ExceptionListener.class: UCI\Boson\TrazasBundle\EventListener\ExceptionListener
+    trazas.DatoListener.class : UCI\Boson\TrazasBundle\EventListener\DatoListener
+    trazas.AccionListener.class :  UCI\Boson\TrazasBundle\EventListener\AccionListener
+
+services:
+    request:
+        scope: request
+        synthetic: true
+        synchronized: true
+
+    #servicio para trazas de excepcion
+    exception_listener:
+        class: %trazas.ExceptionListener.class%
+        arguments: [@security.token_storage,@doctrine]
+        tags:
+        - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+    on_flush_listener:
+        class: %trazas.DatoListener.class%
+        arguments: [@service_container,doctrine]
+        calls:
+            - [ setRequest, ['@?request='] ]
+        tags:
+        - { name: doctrine.event_listener , event: onFlush }
+    #servicio para trazas de accion
+    accion_listener:
+        class: %trazas.AccionListener.class%
+        arguments: [@security.token_storage,@doctrine, true]
+        tags:
+        - {name: kernel.event_listener , event: kernel.response, method: onKernelResponse }
+
+    rendimiento_listener:
+        class: %trazas.AccionListener.class%
+        arguments: [@security.token_storage,@doctrine, true]
+        tags:
+        - {name: kernel.event_listener , event: kernel.terminate, method: onKernelTerminate }

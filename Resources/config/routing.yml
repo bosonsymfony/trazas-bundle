@@ -1,0 +1,9 @@
+ruta_prueba:
+    resource: "@TrazasBundle/Test/Controller/PruebaController.php"
+    type: annotation
+    prefix: /
+
+trazas_angular_app:
+    resource: "@TrazasBundle/Controller/"
+    type:     annotation
+    prefix:   /angular_app

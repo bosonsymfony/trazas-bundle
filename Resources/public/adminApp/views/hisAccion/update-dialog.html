@@ -1,0 +1,101 @@
+<md-dialog>
+    <md-toolbar class="md-panel-toolbar">
+        <div class="md-toolbar-tools">
+            <h3>
+                Modificar hisAccion
+            </h3>
+            <span flex=""></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="mdi mdi-close i-24"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-dialog-content">
+        <form name="form"
+          method="post" action="">    <div ng-messages="errors.trazasbundle_hisaccion">
+        <div ng-repeat="message in errors.trazasbundle_hisaccion" ng-bind="message"></div>
+    </div>                    <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Id traza</label>
+                <input type="number" name="trazasbundle_hisaccion[idTraza]" ng-model="entity['trazasbundle_hisaccion[idTraza]']" required="required" />
+            <div ng-messages="errors.idTraza">
+        <div ng-repeat="message in errors.idTraza" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Fecha</label>
+                <input type="text" name="trazasbundle_hisaccion[fecha]" ng-model="entity['trazasbundle_hisaccion[fecha]']" required="required" maxlength="100" />
+            <div ng-messages="errors.fecha">
+        <div ng-repeat="message in errors.fecha" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Hora</label>
+                <input type="text" name="trazasbundle_hisaccion[hora]" ng-model="entity['trazasbundle_hisaccion[hora]']" required="required" maxlength="100" />
+            <div ng-messages="errors.hora">
+        <div ng-repeat="message in errors.hora" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Usuario</label>
+                <input type="text" name="trazasbundle_hisaccion[usuario]" ng-model="entity['trazasbundle_hisaccion[usuario]']" required="required" maxlength="255" />
+            <div ng-messages="errors.usuario">
+        <div ng-repeat="message in errors.usuario" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Ip host</label>
+                <input type="text" name="trazasbundle_hisaccion[ipHost]" ng-model="entity['trazasbundle_hisaccion[ipHost]']" required="required" maxlength="255" />
+            <div ng-messages="errors.ipHost">
+        <div ng-repeat="message in errors.ipHost" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Rol</label>
+                <input type="text" name="trazasbundle_hisaccion[rol]" ng-model="entity['trazasbundle_hisaccion[rol]']" required="required" maxlength="255" />
+            <div ng-messages="errors.rol">
+        <div ng-repeat="message in errors.rol" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Referencia</label>
+                <input type="text" name="trazasbundle_hisaccion[referencia]" ng-model="entity['trazasbundle_hisaccion[referencia]']" required="required" maxlength="255" />
+            <div ng-messages="errors.referencia">
+        <div ng-repeat="message in errors.referencia" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Controlador</label>
+                <input type="text" name="trazasbundle_hisaccion[controlador]" ng-model="entity['trazasbundle_hisaccion[controlador]']" required="required" maxlength="255" />
+            <div ng-messages="errors.controlador">
+        <div ng-repeat="message in errors.controlador" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Accion</label>
+                <input type="text" name="trazasbundle_hisaccion[accion]" ng-model="entity['trazasbundle_hisaccion[accion]']" required="required" maxlength="255" />
+            <div ng-messages="errors.accion">
+        <div ng-repeat="message in errors.accion" ng-bind="message"></div>
+    </div>
+    </md-input-container>            <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Inicio</label>
+                <input type="text" name="trazasbundle_hisaccion[inicio]" ng-model="entity['trazasbundle_hisaccion[inicio]']" required="required" maxlength="255" />
+            <div ng-messages="errors.inicio">
+        <div ng-repeat="message in errors.inicio" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+                                <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+                            <label class="required">Falla</label>
+                <input type="text" name="trazasbundle_hisaccion[falla]" ng-model="entity['trazasbundle_hisaccion[falla]']" required="required" maxlength="255" />
+            <div ng-messages="errors.falla">
+        <div ng-repeat="message in errors.falla" ng-bind="message"></div>
+    </div>
+    </md-input-container>            </div>
+            </form>
+    </md-dialog-content>
+    <div class="md-actions">
+        <md-button class="md-primary md-raised" ng-disabled="!form.$valid" ng-click="accept()">Aceptar</md-button>
+        <md-button class="md-primary" ng-click="cancel()">Cancelar</md-button>
+    </div>
+</md-dialog>
