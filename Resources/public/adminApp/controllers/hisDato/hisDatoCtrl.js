@@ -126,7 +126,7 @@ angular.module('app')
                 }
 
                 function onComplete() {
-                    toastr.success("Traza(s) eliminada con éxito");
+                    toastr.success("Las trazas se han eliminado satisfactoriamente.");
                     $mdDialog.hide();
                 }
 

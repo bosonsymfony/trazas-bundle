@@ -5,6 +5,14 @@ angular.module('app')
     .controller('trazasHomeCtrl',
         ['$scope', 'trazasHomeSvc', 'toastr', '$mdDialog',
             function ($scope, trazasHomeSvc, toastr, $mdDialog) {
+
+                trazasHomeSvc.getCSRFtoken()
+                    .success(function (response) {
+                        $scope.token = response;
+                    })
+                    .error(function (response) {
+                    });
+
                 $scope.wasmodified = false;
 
                 $scope.modif = function () {
@@ -48,12 +56,13 @@ angular.module('app')
                                 performance: $scope.swperformance,
                                 exception: $scope.swexception,
                                 data: $scope.swdata,
+                                _token: $scope.token
                             }
                         };
 
                         trazasHomeSvc.writeYAML(data)
                             .success(function (response) {
-                                toastr.success("Se han configurado las trazas satisfactoriamente");
+                                toastr.success(response);
                                 $scope.wasmodified = false;
                             })
                             .error(function (response) {
@@ -62,7 +71,7 @@ angular.module('app')
                             });
                     }, function() {
                         //en caso contrario:
-                        toastr.info("Se ha cancelado la operación");
+                        //toastr.info("Se ha cancelado la operación");
                     });
                 };
             }

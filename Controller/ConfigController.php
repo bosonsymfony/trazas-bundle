@@ -17,6 +17,19 @@ class ConfigController extends BackendController
 {
 
     /**
+     * Obtiene el token para que los formularios de angular trabajen.
+     *
+     * @Route("/trazas/csrf_token", name="trazas_csrf_form", options={"expose"=true})
+     * @Method("POST")
+     */
+    public function getCsrfTokenAction(Request $request){
+        $tokenId = $request->request->get('id_form');
+        $csrf = $this->get('security.csrf.token_manager');
+        $token = $csrf->getToken($tokenId);
+        return new Response($token);
+    }
+
+    /**
      * Carga los diferentes tipos de trazas y su estado de activación
      * Responde al RF(85) Listar tipos de trazas
      * @return mixed
@@ -140,7 +153,7 @@ class ConfigController extends BackendController
             $dirTrazas = $this->findFileConfig($dirInicial, $params);
             $yaml_dump = $dumper->dump($yaml, 6);
             file_put_contents($dirTrazas, $yaml_dump);
-            return new Response();
+            return new Response("Se han configurado las trazas satisfactoriamente.",200);
         }
     }
 

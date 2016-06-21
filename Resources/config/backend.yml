@@ -7,18 +7,18 @@ menu:
         includes: trazas
         children:
             home:
-                title: 'Activar Trazas'
+                title: 'Activar trazas'
                 type: link
                 state: trazas.activarT
             hisaccion:
-                title: 'Trazas de Acción'
+                title: 'Trazas de acción'
                 type: link
                 state: trazas.hisaccion
             hisdato:
-                title: 'Trazas de Datos'
+                title: 'Trazas de datos'
                 type: link
                 state: trazas.hisdato
             hisexcepcion:
-                title: 'Trazas de Excepción'
+                title: 'Trazas de excepción'
                 type: link
                 state: trazas.hisexcepcion

@@ -22,12 +22,16 @@ angular.module('app')
                     return $http.get(Routing.generate('trazas_current_info', {}, true));
                 }
 
+                function getCSRFtoken() {
+                    return $http.post(Routing.generate('trazas_csrf_form', {}, true), {id_form: 'uci_boson_trazasbundle_data'});
+                }
 
                 return {
                     setMessage: setMessage,
                     getMessage: getMessage,
                     writeYAML: writeYAML,
                     showCurrentInfo: showCurrentInfo,
+                    getCSRFtoken: getCSRFtoken,
                     $get: function () {
                     }
                 }
