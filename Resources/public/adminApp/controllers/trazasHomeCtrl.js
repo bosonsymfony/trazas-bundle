@@ -42,38 +42,57 @@ angular.module('app')
 
                 $scope.guardarClick = function (ev) {
 
-                    var confirm = $mdDialog.confirm()
-                        .title('Confirmación de cambios')
-                        .textContent('¿Está seguro que desea guardar los cambios?')
-                        .targetEvent(ev)
-                        .ok('Si')
-                        .cancel('No');
-                    $mdDialog.show(confirm).then(function() {
-                        //si se selecciona que si:
-                        var data = {
-                            uci_boson_trazasbundle_data: {
-                                action: $scope.swaction,
-                                performance: $scope.swperformance,
-                                exception: $scope.swexception,
-                                data: $scope.swdata,
-                                _token: $scope.token
-                            }
-                        };
-
-                        trazasHomeSvc.writeYAML(data)
-                            .success(function (response) {
-                                toastr.success(response);
-                                $scope.wasmodified = false;
-                            })
-                            .error(function (response) {
-                                console.log(response);
-                                toastr.error(response);
-                            });
-                    }, function() {
-                        //en caso contrario:
-                        //toastr.info("Se ha cancelado la operación");
+                    $mdDialog.show({
+                        clickOutsideToClose: true,
+                        controller: 'DialogController',
+                        focusOnOpen: false,
+                        targetEvent: ev,
+                        locals: {
+                            entities: $scope.selected
+                        },
+                        templateUrl: $scope.$urlAssets + 'bundles/trazas/adminApp/views/confirm-dialog.html'
+                    }).then(function (answer) {
+                        //console.log(answer);
+                        if (answer == 'Aceptar') {
+                            var data = {
+                                uci_boson_trazasbundle_data: {
+                                    action: $scope.swaction,
+                                    performance: $scope.swperformance,
+                                    exception: $scope.swexception,
+                                    data: $scope.swdata,
+                                    _token: $scope.token
+                                }
+                            };
+                            trazasHomeSvc.writeYAML(data)
+                                .success(function (response) {
+                                    toastr.success(response);
+                                    $scope.wasmodified = false;
+                                })
+                                .error(function (response) {
+                                    console.log(response);
+                                    toastr.error(response);
+                                });
+                        } else {
+                            // alert("Cancelar");
+                        }
                     });
                 };
+            }
+        ]
+    )
+    .controller('DialogController',
+        ['$scope', 'trazasHomeSvc', 'toastr', '$mdDialog',
+            function ($scope, trazasHomeSvc, toastr, $mdDialog) {
+                $scope.hide = function () {
+                    $mdDialog.hide();
+                };
+                $scope.cancel = function () {
+                    $mdDialog.cancel();
+                };
+                $scope.answer = function (answer) {
+                    $mdDialog.hide(answer);
+                };
+
             }
         ]
     );
