@@ -153,19 +153,32 @@ Componente: TrazasBundle
 
 	El componente puede ser utilizado en cualquier sistema implementado sobre versiones de Symfony 2.
 
-4. Servicios que brinda
+4. Configuración del componente a través de la interfaz gráfica
+---------------------------------------------------------------
+Para la configuración de Trazas es necesario acceder al módulo dentro del panel de configuración. Una vez en el módulo se presentan las opciones básicas de configuración de trazas, cargando la configuración actual. Con las opciones presentadas es posible activar o desactivar trazas, así como consultar y eliminar las trazas según su tipo y algún criterio de búsqueda.
+
+4.1. Activar/Desactivar tipos de trazas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Para activar o desactivar trazas, basta con presionar el botón de desplazamiento que se muestra en la barra de estado según el tipo de traza, y luego presionar el botón Configurar. Una vez presionado el botón se muestra un mensaje de confirmación para realizar los cambios. Luego de almacenados los nuevos aspectos de configuración se le presenta al usuario el mensaje “Se han configurado las trazas satisfactoriamente”.
+
+4.2. Listar y eliminar trazas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Para listar las trazas según su tipo y realizar alguna acción sobre ellas es necesario acceder a la opción Traza de (Acción/Datos/Excepción) en dependencia del tipo de traza en cuestión. Una vez en esta ventana se muestra una tabla con el listado de trazas almacenadas. Para realizar una búsqueda sobre las mismas basta con presionar el botón Buscar identificado con el ícono de una lupa y luego introducir el criterio de búsqueda. Si se desea eliminar alguna de estas trazas, o varias, se seleccionan las mismas desde la misma tabla y se presiona el botón eliminar identificado con el ícono de un cubo de basura. Luego de esto se pide confirmación al usuario antes de continuar.
+
+
+5. Servicios que brinda
 -----------------------
 
 
-5. Servicios de los que depende
+6. Servicios de los que depende
 -------------------------------
 
 
-6. Eventos generados
+7. Eventos generados
 --------------------
 
 
-7. Eventos observados
+8. Eventos observados
 ---------------------
 
 	.. code-block:: php
@@ -205,7 +218,7 @@ Componente: TrazasBundle
 	El evento **onKernelTerminate** es observado con el objetivo de almacenar las trazas de tipo **datos**, solo las asociadas a la eliminación de tuplas. Ver implementación  de la clase ..\\TrazasBundle\\EventListener\\DatoListener.php
 
 
-8. Otras características
+9. Otras características
 ------------------------
 
 	La subscripción a los distintos eventos que son escuchados por los *listeners* definidos para cada tipo de trazas se encuentra en el fichero **TrazasBundle/Resources/config/servicesListeners.yml**. Este fichero se genera cada vez que el sistema cachea toda la información inicial (**en el entorno de producción solo la primera vez**, si ocurren cambios debes limpiar la caché). El mecanismo para generarlo es utilizando la misma técnica de generar ficheros del bundle GeneratorBundle. La implementación se encuentra en la clase **TrazasBundle/Generator/ServiceFilGenerator** y la plantilla utilizada en la carpeta skeleton de esa misma dirección.
@@ -215,7 +228,7 @@ Componente: TrazasBundle
 
 :Versión: 1.0 17/7/2015
 
-:Autores: Daniel Arturo Casals Amat dacasals@uci.cu
+:Autores: Daniel Arturo Casals Amat dacasals@uci.cu, Daniel Herrera Sánchez dherrera@estudiantes.uci.cu
 
 
 Contribuidores
@@ -225,4 +238,3 @@ Contribuidores
 
 Licencia
 --------
-
