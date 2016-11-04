@@ -230,8 +230,9 @@ class AccionListener
             }
             else{
                 $this->em->persist($accion);
-
-                $this->em->clear($this->tipo);
+                
+                //Esto genera problemas en las últimas versiones de doctrine probadas.
+                //$this->em->clear($this->tipo);
 
                 $this->em->flush($accion);
                 $rendimiento = new hisRendimiento();
