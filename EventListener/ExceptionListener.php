@@ -5,6 +5,7 @@ namespace UCI\Boson\TrazasBundle\EventListener;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
@@ -34,17 +35,18 @@ class ExceptionListener {
 
     private $tipo;
     private $managerRegistry;
-
+    private $logger;
     /**
      * Constructor de la clase.
      *
      * @param TokenStorage $securityContext
      * @param EntityManager $em
      */
-    public function __construct(TokenStorage $securityContext,ManagerRegistry $managerRegistry) {
+    public function __construct(TokenStorage $securityContext,ManagerRegistry $managerRegistry, LoggerInterface $logger) {
         $this->securityContext = $securityContext;
         $this->em = $managerRegistry->getManager("default");
         $this->managerRegistry = $managerRegistry;
+        $this->logger = $logger;
     }
 
     /**
@@ -131,7 +133,11 @@ class ExceptionListener {
                 $this->em->flush();
             }
             catch(DBALException $ex){
+                $this->logger->error($ex->getMessage());
                 throw new LocalException("ENotConexion",$ex);
+            }
+            catch(\Exception $ex){
+            $this->logger->error("Exception trace not Registred in Database:"+ $ex->getMessage());
             }
         }
     }

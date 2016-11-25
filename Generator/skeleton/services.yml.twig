@@ -27,7 +27,7 @@ services:
     #servicio para trazas de excepcion
     exception_listener:
         class: "%trazas.ExceptionListener.class%"
-        arguments: ["@security.token_storage","@{{ doctrine_manager }}"]
+        arguments: ["@security.token_storage","@{{ doctrine_manager }}", "@logger"]
         tags:
         - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
@@ -46,7 +46,7 @@ services:
         calls:
             - [ setRequest, ['@?request='] ]
         tags:
-        - { name: doctrine.event_listener , event: postFlush }
+        - { name: doctrine.event_listener , event: onFlush }
 {% endif %}
 {% if types.action and not types.performance %}
     #servicio para trazas de accion
