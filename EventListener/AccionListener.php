@@ -232,7 +232,11 @@ class AccionListener
                 $this->em->persist($accion);
                 
                 //Esto genera problemas en las últimas versiones de doctrine probadas.
-                //$this->em->clear($this->tipo);
+                try{
+                    $this->em->clear($this->tipo);
+                }catch (\Exception $ex){
+                    
+                }
 
                 $this->em->flush($accion);
                 $rendimiento = new hisRendimiento();

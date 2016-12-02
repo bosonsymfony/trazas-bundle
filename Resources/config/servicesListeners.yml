@@ -11,27 +11,34 @@ services:
 
     #servicio para trazas de excepcion
     exception_listener:
-        class: %trazas.ExceptionListener.class%
-        arguments: [@security.token_storage,@doctrine]
+        class: "%trazas.ExceptionListener.class%"
+        arguments: ["@security.token_storage","@doctrine", "@logger"]
         tags:
         - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
     on_flush_listener:
-        class: %trazas.DatoListener.class%
-        arguments: [@service_container,doctrine]
+        class: "%trazas.DatoListener.class%"
+        arguments: ["@service_container",doctrine]
+        calls:
+            - [ setRequest, ['@?request='] ]
+        tags:
+        - { name: doctrine.event_listener , event: onFlush }
+    post_flush_listener:
+        class: "%trazas.DatoListener.class%"
+        arguments: ["@service_container",doctrine, "@on_flush_listener"]
         calls:
             - [ setRequest, ['@?request='] ]
         tags:
         - { name: doctrine.event_listener , event: onFlush }
     #servicio para trazas de accion
     accion_listener:
-        class: %trazas.AccionListener.class%
-        arguments: [@security.token_storage,@doctrine, true]
+        class: "%trazas.AccionListener.class%"
+        arguments: ["@security.token_storage","@doctrine", true]
         tags:
         - {name: kernel.event_listener , event: kernel.response, method: onKernelResponse }
 
     rendimiento_listener:
-        class: %trazas.AccionListener.class%
-        arguments: [@security.token_storage,@doctrine, true]
+        class: "%trazas.AccionListener.class%"
+        arguments: ["@security.token_storage","@doctrine", true]
         tags:
         - {name: kernel.event_listener , event: kernel.terminate, method: onKernelTerminate }
