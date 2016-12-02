@@ -46,7 +46,7 @@ services:
         calls:
             - [ setRequest, ['@?request='] ]
         tags:
-        - { name: doctrine.event_listener , event: postFlush }
+        - { name: doctrine.event_listener , event: onFlush }
 {% endif %}
 {% if types.action and not types.performance %}
     #servicio para trazas de accion
